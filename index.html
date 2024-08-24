@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Language" content="ar">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="نموذج شراء سهل الاستخدام لجمع معلومات العملاء.">
+    <meta name="keywords" content="نموذج شراء, شراء, نموذج طلب, نموذج تسجيل">
+    <meta name="author" content="اسمك أو اسم شركتك">
+    
+    <!-- Open Graph for Facebook -->
+    <meta property="og:title" content="نموذج شراء">
+    <meta property="og:description" content="نموذج لشراء المنتجات بسهولة.">
+    <meta property="og:image" content="رابط-الصورة-الخاصة-بالنموذج.jpg">
+    <meta property="og:url" content="رابط-النموذج">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="نموذج شراء">
+    <meta name="twitter:description" content="نموذج لشراء المنتجات بسهولة.">
+    <meta name="twitter:image" content="رابط-الصورة-الخاصة-بالنموذج.jpg">
+    <meta name="twitter:url" content="رابط-النموذج">
+    
+    <link rel="icon" href="رابط-الأيقونة.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="رابط-الأيقونة.ico" type="image/x-icon">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="google" content="notranslate">
+  <title>نموذج شراء</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      text-align: right; /* محاذاة النصوص إلى اليمين */
+    }
+    .container {
+      max-width: 1000px; /* تحديد الحد الأقصى لعرض الحاوية */
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .images {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .images img {
+      max-width: 100%;
+      height: auto;
+      margin: 0 10px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      margin: 10px 0 5px;
+    }
+    input[type="text"], input[type="tel"] {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box; /* التأكد من أن padding لا يؤثر على العرض */
+    }
+    input[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px; /* زيادة حجم الخط لتناسب الأزرار */
+    }
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+    @media (max-width: 600px) {
+      .container {
+        margin: 10px;
+        padding: 15px;
+      }
+      input[type="submit"] {
+        padding: 12px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="images">
+      <img src="image/imagesss.png" alt="صورة توضيحية 1">
+      <img src="image/t-shirt.png" alt="صورة توضيحية 2">
+    </div>
+    <form id="purchaseForm">
+      <label for="name">الاسم الكامل:</label>
+      <input type="text" id="name" name="name" required>
+      
+      <label for="phone">رقم الهاتف:</label>
+      <input type="tel" id="phone" name="phone" required>
+      
+      <label for="state">الولاية:</label>
+      <input type="text" id="state" name="state" required>
+      
+      <label for="address">العنوان:</label>
+      <input type="text" id="address" name="address" required>
+      
+      <input type="submit" value="إرسال">
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('purchaseForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const formData = new FormData(this);
+      const data = {};
+      formData.forEach((value, key) => {
+        data[key] = value;
+      });
+
+      fetch('https://script.google.com/macros/s/AKfycbynLB8oTyiQ2LCaYyDhv4bCBvDtVi4dNDTnmiO0MqXv0C9qEXLUzl4R-m2DSZnsZM_f3w/exec', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams(data).toString()
+      })
+      .then(response => response.text())
+      .then(result => {
+        alert('تم إرسال البيانات بنجاح!');
+        document.getElementById('purchaseForm').reset();
+      })
+      .catch(error => {
+        console.error('خطأ في إرسال البيانات:', error);
+        alert('فشل في إرسال البيانات.');
+      });
+    });
+  </script>
+</body>
+</html>
